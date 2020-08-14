@@ -29,52 +29,70 @@ void Student::SetStudentAge(int ageInYears){
     //FIXME
 };
 
-void Student::SetCourseDays(vector<int> CourseDays){
+void Student::SetCourseDays(int CourseDays[]){
     //FIXME
 }; //FIXME HOW TO ARRAYS
-void Student::SetDegreeProgram(int degreeprog){
-    //FIXME
+void Student::SetDegreeProgram(DegreeProgram degProg){
+   //FIXME
 }; //FIXME: POSSIBLY USER ENUMERATION
-Student::Student(){
-    //Maybe user construct member initialization for array?
-    studentId = "Student ID";
-    firstName = "First Name";
-    lastName = "Last Name";
-    emailAddress = "Email ID";
-    studentAge = 0;
-    courseDays = 0;
-    degreeProgram = "Random"; //FIXME PROBABLY USE ENUMERATION
+
+
+Student::Student(){ //Default constructor member function
+    this->studentId = "";
+    this->firstName = "";
+    this->lastName = "";
+    this->emailAddress = "";
+    this->studentAge = 0;
+    this->courseDays = new int[courseDaysSize];
+    for (int i = 0; i < courseDaysSize; ++i) {
+        courseDays[i] = 0;
+    }
+    this->degreeProgram = SECURITY; //FIXME PROBABLY USE ENUMERATION
 }; // Constructor D.2.d
-    
+
+    //Full Constructor
+Student::Student(string Id, string fName, string lName, string emailId, int age, int coursesInDays[], DegreeProgram degProg){ //Default constructor member function
+    this->studentId = Id;
+    this->firstName = fName;
+    this->lastName = lName;
+    this->emailAddress = emailId;
+    this->studentAge = age;
+    this->courseDays = new int[courseDaysSize];
+    for (int i = 0; i < courseDaysSize; ++i) {
+        courseDays[i] = coursesInDays[i];
+    }
+    this->degreeProgram = degProg; //FIXME PROBABLY USE ENUMERATION
+};
+
     //Task D.2.a Creating Accessors/Getters for each instance variable
-string Student::GetStudentId (int studentId) const{
+string Student::GetStudentId () const{
     //FIXME
     
     return "studentId"; //FIXME FILLER
 };
-    string Student::GetStudentFirstName (string fname) const{
+    string Student::GetStudentFirstName () const{
         //FIXME
         return "studentId"; //FIXME FILLER
     };
-    string Student::GetStudentLastName (string lname) const{
+    string Student::GetStudentLastName () const{
         //FIXME
         return "studentId"; //FIXME FILLER
     };
-    string Student::GetStudentEmailAddress (string emailid) const{
+    string Student::GetStudentEmailAddress () const{
         //FIXME
         return "studentId"; //FIXME FILLER
     };
-    int Student::GetStudentAge(int ageInYears) const{
+    int Student::GetStudentAge() const{
         //FIXME
         return 000; //FIXME FILLER
     };
-    int Student::GetCourseDays(vector<int> CourseDays) const{
+    int* Student::GetCourseDays() const{
         //FIXME
         return 000; //FIXME FILLER
     }; //FIX ME HOW TO ARRAYS
-    int Student::GetDegreeProgram(int degreeprog) const{
-        //FIXME
-        return 000; //FIXME FILLER
+    DegreeProgram Student::GetDegreeProgram() const{
+        return SECURITY;//FIXME
+        ; //FIXME FILLER
     }; //FIX ME: POSSIBLY USER ENUMERATION
     void Student::PrintStudentData() const{
         //FIXME
