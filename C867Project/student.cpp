@@ -96,6 +96,9 @@ string Student::GetStudentId () const{
     }; //FIX ME: POSSIBLY USER ENUMERATION
     void Student::PrintStudentData() const{
         //FIXME
-        cout <<"printing student data";
+        cout <<"printing student data" << endl;
+        //youtube part 4 chapter video 4 part 2
+        //FIXME ENUM GETDEGREEPROGRAM
+        cout << studentId << " " << firstName << " " << lastName << " " << emailAddress << " " << studentAge << " " <<courseDays[0] << " " << courseDays[1] << " " << courseDays[2] << GetDegreeProgram();
     }; //D.2.e PRINT SPECIFIC STUDENT DATA
     

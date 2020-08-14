@@ -7,9 +7,13 @@
 //
 
 #include <iostream>
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+using namespace std;
+int main() {
+    //TASK F.1 PERSONAL INFORMATION PRINT
+    cout << "Scripting And Programming - Applications" << endl;
+    cout << "Programming Language - C++" << endl;
+    cout << "Student ID - 000870229" << endl;
+    cout << "Student Name - Pravesh Shrestha" << endl;
+   
     return 0;
 }
