@@ -16,6 +16,10 @@ using namespace std;
 class Roster{
     
 public:
+    //Default Constructor
+    Roster();
+    
+    Roster(int capacity);
     //E.3.a
     void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgramType degreeprogram);
     
@@ -34,10 +38,14 @@ public:
     //E.3.f
     void printByDegreeProgram(DegreeProgramType degreeProgram);
     
-    //CREATE CONSTRUCTOR
+    //Destructor
+    ~Roster();
+    
 private:
     
-    
+    int lastIndex;
+    int capacity;
+    Student** student;
     
 };
 
