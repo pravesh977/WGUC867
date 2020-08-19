@@ -12,93 +12,115 @@
 #include <vector>
 using namespace std;
 #include "student.h"
-    
-void Student::SetStudentId (int studentId){
-    //FIXME
+
+    //Setters/Mutators
+void Student::SetStudentId (string studentId){
+    this->studentId = studentId;
 };
 void Student::SetStudentFirstName (string fname){
-    //FIXME
+    this->firstName = fname;
 };
 void Student::SetStudentLastName (string lname){
-    //FIXME
+    this->lastName = lname;
 };
 void Student::SetStudentEmailAddress (string emailid){
-    //FIXME
+    this->emailAddress = emailid;
 };
 void Student::SetStudentAge(int ageInYears){
-    //FIXME
+    this->studentAge = ageInYears;
 };
 
 void Student::SetCourseDays(int CourseDays[]){
     //FIXME
-}; //FIXME HOW TO ARRAYS
-void Student::SetDegreeProgram(DegreeProgram degProg){
-   //FIXME
-}; //FIXME: POSSIBLY USER ENUMERATION
+};
+void Student::SetDegreeProgram(DegreeProgramType degProg){
+    this->degreeProgram = degProg;
+};
 
 
-Student::Student(){ //Default constructor member function
+//TASK D.2.d Default constructor member function
+Student::Student(){
     this->studentId = "";
     this->firstName = "";
     this->lastName = "";
     this->emailAddress = "";
     this->studentAge = 0;
+    //Dynamically creating arrays for pointer courseDays
     this->courseDays = new int[courseDaysSize];
     for (int i = 0; i < courseDaysSize; ++i) {
         courseDays[i] = 0;
     }
-    this->degreeProgram = SECURITY; //FIXME PROBABLY USE ENUMERATION
-}; // Constructor D.2.d
+    this->degreeProgram = SECURITY;
+};
 
-    //Full Constructor
-Student::Student(string Id, string fName, string lName, string emailId, int age, int coursesInDays[], DegreeProgram degProg){ //Default constructor member function
+//Full Constructor
+Student::Student(string Id, string fName, string lName, string emailId, int age, int coursesInDays[], DegreeProgramType degProg){
     this->studentId = Id;
     this->firstName = fName;
     this->lastName = lName;
     this->emailAddress = emailId;
     this->studentAge = age;
+    //Dynamically creating arrays for pointer courseDays
     this->courseDays = new int[courseDaysSize];
     for (int i = 0; i < courseDaysSize; ++i) {
         courseDays[i] = coursesInDays[i];
     }
-    this->degreeProgram = degProg; //FIXME PROBABLY USE ENUMERATION
+    this->degreeProgram = degProg;
 };
 
-    //Task D.2.a Creating Accessors/Getters for each instance variable
-string Student::GetStudentId () const{
-    //FIXME
-    
-    return "studentId"; //FIXME FILLER
+//Task F5 Destructor FIXME understand destructor Where to place it? how does it get called?
+Student::~Student() {
+    if (courseDays != nullptr) {
+        delete [] courseDays;
+        courseDays = nullptr;
+    }
 };
+    //Task D.2.a Creating Accessors/Getters for each instance variable
+    string Student::GetStudentId () const{
+        return studentId;
+    };
     string Student::GetStudentFirstName () const{
-        //FIXME
-        return "studentId"; //FIXME FILLER
+        return firstName;
     };
     string Student::GetStudentLastName () const{
-        //FIXME
-        return "studentId"; //FIXME FILLER
+        return lastName;
     };
     string Student::GetStudentEmailAddress () const{
-        //FIXME
-        return "studentId"; //FIXME FILLER
+        return emailAddress;
     };
     int Student::GetStudentAge() const{
-        //FIXME
-        return 000; //FIXME FILLER
+        return studentAge;
     };
-    int* Student::GetCourseDays() const{
-        //FIXME
-        return 000; //FIXME FILLER
-    }; //FIX ME HOW TO ARRAYS
-    DegreeProgram Student::GetDegreeProgram() const{
-        return SECURITY;//FIXME
-        ; //FIXME FILLER
-    }; //FIX ME: POSSIBLY USER ENUMERATION
+    int* Student::GetCourseDays(){
+        return courseDays;
+    };
+    DegreeProgramType Student::GetDegreeProgram() const{
+        return degreeProgram;//FIXME
+    };
+
+    //Task D.2.e PRINT SPECIFIC STUDENT DATA
     void Student::PrintStudentData() const{
-        //FIXME
-        cout <<"printing student data" << endl;
-        //youtube part 4 chapter video 4 part 2
-        //FIXME ENUM GETDEGREEPROGRAM
-        cout << studentId << " " << firstName << " " << lastName << " " << emailAddress << " " << studentAge << " " <<courseDays[0] << " " << courseDays[1] << " " << courseDays[2] << GetDegreeProgram();
-    }; //D.2.e PRINT SPECIFIC STUDENT DATA
+        //cout <<"printing student data" << endl;
+        
+        
+        cout << left << setw(5) << studentId;
+        cout << left << setw(15) << firstName;
+        cout << left << setw(15) << lastName;
+        cout << left << setw(25) << emailAddress;
+        cout << left << setw(10) << studentAge;
+        cout << left << setw(10) << courseDays[0];
+        cout << left << setw(10) << courseDays[1];
+        cout << left << setw(10) << courseDays[2];
+         //For degree program enumeration creating if condition to display correct text
+        if (degreeProgram == 0) {
+        cout << left << setw(20) << "Security";
+        }
+        else if (degreeProgram == 1) {
+        cout << left << setw(20) << "Network";
+        }
+        else {
+        cout << left << setw(20) << "Software";
+        }
+        cout << endl;
+    };
     

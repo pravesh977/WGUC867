@@ -10,25 +10,34 @@
 #define student_h
 #include "degree.h"
 
-//Task D: Creating class Student in file student.h
+
+#include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
+
+//Task D: Creating class Student in file student.h
 class Student {
     
 public:
     //Task D.2.b Creating Setters/Mutators for each instance variable
-    void SetStudentId (int studentId);
+    void SetStudentId (string studentId);
     void SetStudentFirstName (string fname);
     void SetStudentLastName (string lname);
     void SetStudentEmailAddress (string emailid);
     void SetStudentAge(int ageInYears);
-    void SetCourseDays(int CourseDays[]); //FIXME HOW TO ARRAYS
-    void SetDegreeProgram(DegreeProgram degProg); //FIXME: POSSIBLY USER ENUMERATION
+    void SetCourseDays(int CourseDays[]);
+    void SetDegreeProgram(DegreeProgramType degProg);
     
+    // Empty Constructor D.2.d
+    Student();
     
-    Student(); // Empty Constructor D.2.d
-    Student(string studentId, string fName, string lName, string emailId,int studentAge, int courseDays[], DegreeProgram degProg); // Full Constructor D.2.d
+     // Full Constructor D.2.d
+    Student(string studentId, string fName, string lName, string emailId,int studentAge, int courseDays[], DegreeProgramType degProg);
+    
+    //Task F5 Destructor
+    ~Student();
     
     
     //Task D.2.a Creating Accessors/Getters for each instance variable
@@ -37,22 +46,25 @@ public:
     string GetStudentLastName () const;
     string GetStudentEmailAddress () const;
     int GetStudentAge() const;
-    int* GetCourseDays() const; //FIXME HOW TO ARRAYS
-    DegreeProgram GetDegreeProgram() const; //FIXME: POSSIBLY USER ENUMERATION
+    int* GetCourseDays();
+    DegreeProgramType GetDegreeProgram() const;
     
-    void PrintStudentData() const; //D.2.e
+    
+    //Task D.2.e Print specific student data
+    void PrintStudentData() const;
     
     
 private:
-    //Task D.1 creating variables in sfile student.h
+    //Task D.1 creating variables in file student.h
     string studentId;
     string firstName;
     string lastName;
     string emailAddress;
     int studentAge;
-    int* courseDays; //FIXME ARRAYS
-    DegreeProgram degreeProgram; //FIXME PROBABLY USE ENUMERATION
+    int *courseDays;
+    DegreeProgramType degreeProgram;
     const int courseDaysSize = 3;
 };
+
 
 #endif /* student_h */
