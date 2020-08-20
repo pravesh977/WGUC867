@@ -12,7 +12,6 @@ using namespace std;
 #include "student.h"
 #include "roster.h"
 
-
 //YAY
 int main() {
     //TASK F.1 PERSONAL INFORMATION PRINT
@@ -45,11 +44,12 @@ int main() {
     //cout << "this is full constructor result" << endl;
     boi2.PrintStudentData();
     
-    
+    Roster classRoster;
+
     
     
     
     
     return 0;
 }
-Roster classRoster;
+

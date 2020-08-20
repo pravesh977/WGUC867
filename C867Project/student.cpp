@@ -30,8 +30,11 @@ void Student::SetStudentAge(int ageInYears){
     this->studentAge = ageInYears;
 };
 
-void Student::SetCourseDays(int CourseDays[]){
-    //FIXME
+void Student::SetCourseDays(int courseDays[]){
+    this->courseDays = new int[courseDaysSize];
+    for (int i = 0; i < courseDaysSize; ++i) {
+        this->courseDays[i] = courseDays[i];
+    }
 };
 void Student::SetDegreeProgram(DegreeProgramType degProg){
     this->degreeProgram = degProg;
@@ -60,10 +63,12 @@ Student::Student(string Id, string fName, string lName, string emailId, int age,
     this->lastName = lName;
     this->emailAddress = emailId;
     this->studentAge = age;
-    //Dynamically creating arrays for pointer courseDays
+    //"new" will create 3 new int type of array and return a pointer. we then set that return value to a pointer courseDays (member integer variable/object variable) which will point to that new dynamically created array.
     this->courseDays = new int[courseDaysSize];
+    //cout <<" cousreDays aftrew new is " << courseDays<< endl;
     for (int i = 0; i < courseDaysSize; ++i) {
         courseDays[i] = coursesInDays[i];
+        //cout << &courseDays[i] << endl;
     }
     this->degreeProgram = degProg;
 };
@@ -95,7 +100,7 @@ Student::~Student() {
         return courseDays;
     };
     DegreeProgramType Student::GetDegreeProgram() const{
-        return degreeProgram;//FIXME
+        return degreeProgram;
     };
 
     //Task D.2.e PRINT SPECIFIC STUDENT DATA

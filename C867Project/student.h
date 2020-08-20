@@ -27,8 +27,9 @@ public:
     void SetStudentLastName (string lname);
     void SetStudentEmailAddress (string emailid);
     void SetStudentAge(int ageInYears);
-    void SetCourseDays(int CourseDays[]);
+    void SetCourseDays(int courseDays[]);
     void SetDegreeProgram(DegreeProgramType degProg);
+    const static int courseDaysSize = 3;
     
     // Empty Constructor D.2.d
     Student();
@@ -61,9 +62,8 @@ private:
     string lastName;
     string emailAddress;
     int studentAge;
-    int *courseDays;
+    int *courseDays; //this is a pointer to integer type array which will be used to hold array of pointers when created dynamically with New.
     DegreeProgramType degreeProgram;
-    const int courseDaysSize = 3;
 };
 
 
