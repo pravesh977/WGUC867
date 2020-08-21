@@ -40,16 +40,73 @@ void Roster::rosterPopulate(string row){
             classRosterArray[lastIndex]->SetDegreeProgram(SECURITY);
         }
         
-        if (row.back() == 'K') {
+        else if (row.back() == 'K') {
             this->classRosterArray[lastIndex] = new Student();
             classRosterArray[lastIndex]->SetDegreeProgram(NETWORK);
         }
         
-        if (row.back() == 'E') {
+        else if (row.back() == 'E') {
             this->classRosterArray[lastIndex] = new Student();
             classRosterArray[lastIndex]->SetDegreeProgram(SOFTWARE);
         }
         
+        
+        //exit if the last value of string dont match
+        else {
+            cerr << "Invalid book type. Closing program now."<< endl;
+            exit(-1);
+        }
+        
+        
+        //Parsing and then setting each field
+        
+        //For studentId
+        int rhs = studentData[lastIndex].find(",");
+        classRosterArray[lastIndex]->SetStudentId(studentData[lastIndex].substr(0, rhs));
+        
+        //For firstName
+        int lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        classRosterArray[lastIndex]->SetStudentFirstName(studentData[lastIndex].substr(lhs, rhs - lhs));
+        
+        //For lastName
+        lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        classRosterArray[lastIndex]->SetStudentLastName(studentData[lastIndex].substr(lhs, rhs - lhs));
+        
+        //For emailAddress
+        lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        classRosterArray[lastIndex]->SetStudentEmailAddress(studentData[lastIndex].substr(lhs, rhs - lhs));
+        
+        //For studentAge //also converted string to int using stoi
+        lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        classRosterArray[lastIndex]->SetStudentAge(stoi(studentData[lastIndex].substr(lhs, rhs - lhs)));
+        
+        //For first courseDays
+        lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        cArray[0] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        
+        //For second courseDays
+        lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        cArray[1] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+               
+        //For third courseDays
+        lhs = rhs + 1;
+        rhs = studentData[lastIndex].find(",", lhs);
+        cArray[2] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+               
+        //For courseDays Array
+        classRosterArray[lastIndex]->SetCourseDays(cArray);
+
+    }
+    
+    else {
+        cerr<< "Error! list exceeds max capacity, shutting down program" << endl;
+        exit(-1);
     }
     
     
