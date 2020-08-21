@@ -28,27 +28,40 @@ int main() {
     cout << left << setw(15) << "Last Name";
     cout << left << setw(25) << "Email Id";
     cout << left << setw(10) << "Age";
-    cout << left << setw(30) << "Course Days";
+    cout << left << setw(30) << "*** Course Days ***";
     cout << left << setw(20) << "Program";
     cout << endl;
     
     
-    
+  /*
     //CALLING Empty and FULL CONSTRUCTOR FOR PRACTICE
     //Delete later
     int myaray[3] = {55,88,66};
     Student boi1;
-    //cout << "this is default constructor result" << endl;
+    cout << "this is default constructor result" << endl;
     boi1.PrintStudentData();
     Student boi2("A1", "pravesh", "shrestha", "mei@mfia.com", 33, myaray, NETWORK);
-    //cout << "this is full constructor result" << endl;
+    cout << "this is full constructor result" << endl;
     boi2.PrintStudentData();
     
-    Roster classRoster;
-
+   */
     
+    /*
+    //Working but need to work through add function
+    Roster* classRoster = new Roster(numStudents);
+    cout << "Parsing data" << endl;
+    for (int i = 0; i < numStudents; ++i) {
+        classRoster->rosterPopulate(studentData[i]);
+    }
     
+    classRoster->printAll();
+    */
     
+    Roster* classRoster = new Roster(numStudents);
+    for (int i = 0; i < numStudents; ++i) {
+        classRoster->rosterPopulate(studentData[i]);
+    }
+    classRoster->printAll();
     
     return 0;
 }

@@ -31,23 +31,28 @@ Roster::Roster(int capacity){ //setting the max capacity of repository
 //Populating Roster Function
 void Roster::rosterPopulate(string row){
     if (lastIndex < capacity) {
+        DegreeProgramType paramdegree;
         lastIndex++; //incrementing from -1
         int cArray[Student::courseDaysSize]; //creating an array to hold the number of days
         
         //CHECKING THE LAST VALUE OF THE STRING AND SETTING DEGREE PROGRAM VALUE AND ALSO CREATING NEW OBJECTS
+        
         if (row.back() == 'Y') {
             this->classRosterArray[lastIndex] = new Student();
-            classRosterArray[lastIndex]->SetDegreeProgram(SECURITY);
+            //classRosterArray[lastIndex]->SetDegreeProgram(SECURITY);
+            paramdegree = SECURITY;
         }
         
         else if (row.back() == 'K') {
             this->classRosterArray[lastIndex] = new Student();
-            classRosterArray[lastIndex]->SetDegreeProgram(NETWORK);
+            //classRosterArray[lastIndex]->SetDegreeProgram(NETWORK);
+            paramdegree = NETWORK;
         }
         
         else if (row.back() == 'E') {
             this->classRosterArray[lastIndex] = new Student();
-            classRosterArray[lastIndex]->SetDegreeProgram(SOFTWARE);
+            //classRosterArray[lastIndex]->SetDegreeProgram(SOFTWARE);
+            paramdegree = SOFTWARE;
         }
         
         
@@ -62,46 +67,56 @@ void Roster::rosterPopulate(string row){
         
         //For studentId
         int rhs = studentData[lastIndex].find(",");
-        classRosterArray[lastIndex]->SetStudentId(studentData[lastIndex].substr(0, rhs));
+        //classRosterArray[lastIndex]->SetStudentId(studentData[lastIndex].substr(0, rhs));
+        string paramid = studentData[lastIndex].substr(0, rhs);
         
         //For firstName
         int lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        classRosterArray[lastIndex]->SetStudentFirstName(studentData[lastIndex].substr(lhs, rhs - lhs));
+        //classRosterArray[lastIndex]->SetStudentFirstName(studentData[lastIndex].substr(lhs, rhs - lhs));
+        string paramfname = studentData[lastIndex].substr(lhs, rhs - lhs);
         
         //For lastName
         lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        classRosterArray[lastIndex]->SetStudentLastName(studentData[lastIndex].substr(lhs, rhs - lhs));
+        //classRosterArray[lastIndex]->SetStudentLastName(studentData[lastIndex].substr(lhs, rhs - lhs));
+        string paramlname = studentData[lastIndex].substr(lhs, rhs - lhs);
         
         //For emailAddress
         lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        classRosterArray[lastIndex]->SetStudentEmailAddress(studentData[lastIndex].substr(lhs, rhs - lhs));
+        //classRosterArray[lastIndex]->SetStudentEmailAddress(studentData[lastIndex].substr(lhs, rhs - lhs));
+        string paramemail = studentData[lastIndex].substr(lhs, rhs - lhs);
         
         //For studentAge //also converted string to int using stoi
         lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        classRosterArray[lastIndex]->SetStudentAge(stoi(studentData[lastIndex].substr(lhs, rhs - lhs)));
+        //classRosterArray[lastIndex]->SetStudentAge(stoi(studentData[lastIndex].substr(lhs, rhs - lhs)));
+        int paramage = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
         
         //For first courseDays
         lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        cArray[0] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        //cArray[0] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        int paramfirstday = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
         
         //For second courseDays
         lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        cArray[1] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        //cArray[1] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        int paramsecondday = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
                
         //For third courseDays
         lhs = rhs + 1;
         rhs = studentData[lastIndex].find(",", lhs);
-        cArray[2] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        //cArray[2] = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
+        int paramthirdday = stoi(studentData[lastIndex].substr(lhs, rhs - lhs));
                
-        //For courseDays Array
-        classRosterArray[lastIndex]->SetCourseDays(cArray);
-
+        //For courseDays Array/ setting up courseDays with temporary array cArray
+        //classRosterArray[lastIndex]->SetCourseDays(cArray);
+        
+        //calling function add with the arguments
+        add(paramid, paramfname, paramlname, paramemail, paramage, paramfirstday, paramsecondday, paramthirdday, paramdegree);
     }
     
     else {
@@ -111,19 +126,34 @@ void Roster::rosterPopulate(string row){
     
     
     //for studentId
-//    int rhs = studentData[lastIndex].find(",");
-//    classRosterArray[lastIndex]
+    //int rhs = studentData[lastIndex].find(",");
+    //classRosterArray[lastIndex]
 }
 
 
 
-void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgramType degreeprogram){
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgramType degreeprogram) {
+    classRosterArray[lastIndex]->SetStudentId(studentID);
+    classRosterArray[lastIndex]->SetStudentFirstName(firstName);
+    classRosterArray[lastIndex]->SetStudentLastName(lastName);
+    classRosterArray[lastIndex]->SetStudentEmailAddress(emailAddress);
+    classRosterArray[lastIndex]->SetStudentAge(age);
     
+    //creating a temporary array to hold parameter of 3 days
+    int cArray[Student::courseDaysSize];
+    cArray[0] = daysInCourse1;
+    cArray[1] = daysInCourse2;
+    cArray[2] = daysInCourse3;
+    classRosterArray[lastIndex]->SetCourseDays(cArray);
+    classRosterArray[lastIndex]->SetDegreeProgram(degreeprogram);
 };
 
 void Roster::printAll(){
-    cout <<"heyheyhey" << endl;
+    for (int i = 0; i <= this->lastIndex; ++i) {
+        this->classRosterArray[i]->PrintStudentData();
+    }
 }
+
 
 //E.  Create a Roster class (roster.cpp) by doing the following:
 //
