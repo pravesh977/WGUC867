@@ -38,13 +38,14 @@ public:
     void printAll();
     
     //Task E.3.d
-    void printAverageDaysInCourse(string studentID);
+    void printAverageDaysInCourse();
     
     //Task E.3.e
     void printInvalidEmails();
     
-    //E.3.
+    //Task E.3.f
     void printByDegreeProgram(DegreeProgramType degreeProgram);
+    
     
     //Destructor
     //~Roster();

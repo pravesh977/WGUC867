@@ -154,6 +154,7 @@ void Roster::printAll(){
         this->classRosterArray[i]->PrintStudentData();
     }
 }
+
 //Task E.3.e
 void Roster::printInvalidEmails(){
     //Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').
@@ -162,37 +163,71 @@ void Roster::printInvalidEmails(){
         bool atPresent;
         bool periodPresent;
         bool spacePresent;
+        string emailmessage; //Creating a message to display what is wrong with email address
         //cout << " this is ethe eemail of 2  " << this->classRosterArray[i]->GetStudentEmailAddress() << endl;
         string emailid = this->classRosterArray[i]->GetStudentEmailAddress();
-        atPresent = false;
-        periodPresent = false;
+        atPresent = true;
+        periodPresent = true;
         spacePresent = false;
         
         //looking for @
         size_t foundAt = emailid.find('@');
-        if (foundAt != string::npos) {
-            atPresent = true;
+        if (foundAt == string::npos) {
+            atPresent = false;
+            emailmessage = " @ is not found!";
         }
         
         //looking for '.'
         size_t foundPeriod = emailid.find('.');
-        if (foundPeriod != string::npos) {
-            periodPresent = true;
+        if (foundPeriod == string::npos) {
+            periodPresent = false;
+            emailmessage = " . is not found!";
         }
         
         //looking for ' '
         size_t foundSpace = emailid.find(' ');
         if (foundSpace != string::npos) {
             spacePresent = true;
+            emailmessage = " space is not allowed!";
             //cout << "email with shapce " <<emailid << endl;
         }
         
         //checking to see if all conditions match
         if ( (atPresent == false ) || (periodPresent == false) || (spacePresent == true) ) {
-            cout << emailid << endl;
+            cout << emailid << emailmessage << endl;
         }
     }
+    cout << endl;
 }
+
+//Task E.3.d
+void Roster::printAverageDaysInCourse(){
+    for (int i = 0; i < numStudents; ++i) {
+        int averageDays = 0;
+        //creating a pointer that points towards current object's courseDays array
+        int* mypointer = classRosterArray[i]->GetCourseDays();
+        averageDays = (mypointer[0] + mypointer[1] + mypointer[2]) / 3;
+        cout << "Student with ID " << classRosterArray[i]->GetStudentId() << " requires  "<<averageDays <<" days."<< endl;
+    }
+}
+
+//Task E.3.f
+void Roster::printByDegreeProgram(DegreeProgramType degreeProgram){
+    int enumval;
+    if (degreeProgram == SECURITY) {
+        enumval = 0;
+    }
+    else if (degreeProgram == NETWORK){
+        enumval = 1;
+    }
+    else {
+        enumval = 2;
+    }
+    for (int i = 0; i < numStudents; ++i) {
+        classRosterArray[i]->GetDegreeProgram();
+    }///continue
+};
+
 //Destructor FIXME
 //Roster::~Roster(){
     

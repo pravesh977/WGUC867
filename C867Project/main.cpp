@@ -63,6 +63,10 @@ int main() {
     }
     classRoster->printAll();
     classRoster->printInvalidEmails();
+    classRoster->printAverageDaysInCourse();
+    classRoster->printByDegreeProgram(SOFTWARE);
+    
+    
     return 0;
 }
 
