@@ -148,25 +148,51 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
     classRosterArray[lastIndex]->SetDegreeProgram(degreeprogram);
 };
 
+//Task E.3.c
 void Roster::printAll(){
     for (int i = 0; i <= this->lastIndex; ++i) {
         this->classRosterArray[i]->PrintStudentData();
     }
 }
-
-
-//E.  Create a Roster class (roster.cpp) by doing the following:
-//
-//1.  Create an array of pointers, classRosterArray, to hold the data provided in the “studentData Table.”
-//
-//2.  Create a student object for each student in the data table and populate classRosterArray.
-//
-//a.  Parse each set of data identified in the “studentData Table.”
-//
-//b.  Add each student object to classRosterArray.
-//
-
-
+//Task E.3.e
+void Roster::printInvalidEmails(){
+    //Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').
+    
+    for (int i = 0; i < numStudents; ++i) {
+        bool atPresent;
+        bool periodPresent;
+        bool spacePresent;
+        //cout << " this is ethe eemail of 2  " << this->classRosterArray[i]->GetStudentEmailAddress() << endl;
+        string emailid = this->classRosterArray[i]->GetStudentEmailAddress();
+        atPresent = false;
+        periodPresent = false;
+        spacePresent = false;
+        
+        //looking for @
+        size_t foundAt = emailid.find('@');
+        if (foundAt != string::npos) {
+            atPresent = true;
+        }
+        
+        //looking for '.'
+        size_t foundPeriod = emailid.find('.');
+        if (foundPeriod != string::npos) {
+            periodPresent = true;
+        }
+        
+        //looking for ' '
+        size_t foundSpace = emailid.find(' ');
+        if (foundSpace != string::npos) {
+            spacePresent = true;
+            //cout << "email with shapce " <<emailid << endl;
+        }
+        
+        //checking to see if all conditions match
+        if ( (atPresent == false ) || (periodPresent == false) || (spacePresent == true) ) {
+            cout << emailid << endl;
+        }
+    }
+}
 //Destructor FIXME
 //Roster::~Roster(){
     

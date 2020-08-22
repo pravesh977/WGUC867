@@ -62,7 +62,7 @@ int main() {
         classRoster->rosterPopulate(studentData[i]);
     }
     classRoster->printAll();
-    
+    classRoster->printInvalidEmails();
     return 0;
 }
 
