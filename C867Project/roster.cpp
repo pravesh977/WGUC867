@@ -213,19 +213,27 @@ void Roster::printAverageDaysInCourse(){
 
 //Task E.3.f
 void Roster::printByDegreeProgram(DegreeProgramType degreeProgram){
-    int enumval;
-    if (degreeProgram == SECURITY) {
-        enumval = 0;
+    //cout << "param is " << degreeProgram << endl;
+    cout << endl;
+    string chosenprogram;
+    if (degreeProgram == 0){
+        chosenprogram = "Security";
     }
-    else if (degreeProgram == NETWORK){
-        enumval = 1;
+    else if (degreeProgram == 1){
+        chosenprogram = "Networking";
     }
-    else {
-        enumval = 2;
+    else
+    {
+        chosenprogram = "Software";
     }
+    cout << "The list of students who are enrolled in " << chosenprogram << endl;
+    //loop through the student objects and if parameter degreeprogram matches the student object's degreeprogram, print that/current student
     for (int i = 0; i < numStudents; ++i) {
-        classRosterArray[i]->GetDegreeProgram();
-    }///continue
+        if (degreeProgram == classRosterArray[i]->GetDegreeProgram()){
+            classRosterArray[i]->PrintStudentData();
+        }
+        
+    }
 };
 
 //Destructor FIXME

@@ -64,7 +64,7 @@ int main() {
     classRoster->printAll();
     classRoster->printInvalidEmails();
     classRoster->printAverageDaysInCourse();
-    classRoster->printByDegreeProgram(SOFTWARE);
+    classRoster->printByDegreeProgram(SECURITY);
     
     
     return 0;
