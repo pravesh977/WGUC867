@@ -152,6 +152,7 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 void Roster::remove(string studentID){
     cout << endl;
     cout << "Finding the Student with ID " << studentID << " and deleting it." << endl;
+    cout << endl;
     bool idFound = false;
     //cout << lastIndex << " LAST INEX IS " << endl;
     //cout <<numStudents <<" num student is " << endl;
@@ -163,6 +164,8 @@ void Roster::remove(string studentID){
             //Moving last element to this deleted index and decrementing the array size to plug gap
             this->classRosterArray[i] = this->classRosterArray[lastIndex];
             lastIndex--;
+            cout << studentID << " is successfully deleted!!!" << endl;
+            cout << endl;
         }
     }
     if (idFound == false) {
@@ -172,7 +175,18 @@ void Roster::remove(string studentID){
 
 //Task E.3.c
 void Roster::printAll(){
+    cout << "Printing List of all Students in the Roster";
+    //Creating Headings
     cout << endl;
+    cout << left << setw(5) << "ID";
+    cout << left << setw(15) << "First Name";
+    cout << left << setw(15) << "Last Name";
+    cout << left << setw(25) << "Email Id";
+    cout << left << setw(10) << "Age";
+    cout << left << setw(30) << "*** Course Days ***";
+    cout << left << setw(20) << "Program";
+    cout << endl;
+    
     for (int i = 0; i <= this->lastIndex; ++i) {
         this->classRosterArray[i]->PrintStudentData();
     }
@@ -254,6 +268,18 @@ void Roster::printByDegreeProgram(DegreeProgramType degreeProgram){
         chosenprogram = "Software";
     }
     cout << "The list of students who are enrolled in " << chosenprogram << endl;
+    
+    //Creating Headings
+    cout << endl;
+    cout << left << setw(5) << "ID";
+    cout << left << setw(15) << "First Name";
+    cout << left << setw(15) << "Last Name";
+    cout << left << setw(25) << "Email Id";
+    cout << left << setw(10) << "Age";
+    cout << left << setw(30) << "*** Course Days ***";
+    cout << left << setw(20) << "Program";
+    cout << endl;
+
     //loop through the student objects and if parameter degreeprogram matches the student object's degreeprogram, print that/current student
     for (int i = 0; i < numStudents; ++i) {
         if (degreeProgram == classRosterArray[i]->GetDegreeProgram()){

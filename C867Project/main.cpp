@@ -20,18 +20,8 @@ int main() {
     cout << "Student ID - 000870229" << endl;
     cout << "Student Name - Pravesh Shrestha" << endl;
     
-    
-    //Creating Headings
     cout << endl;
-    cout << left << setw(5) << "ID";
-    cout << left << setw(15) << "First Name";
-    cout << left << setw(15) << "Last Name";
-    cout << left << setw(25) << "Email Id";
-    cout << left << setw(10) << "Age";
-    cout << left << setw(30) << "*** Course Days ***";
-    cout << left << setw(20) << "Program";
-    cout << endl;
-    
+
     
   /*
     //CALLING Empty and FULL CONSTRUCTOR FOR PRACTICE
