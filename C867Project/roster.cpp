@@ -131,7 +131,7 @@ void Roster::rosterPopulate(string row){
 }
 
 
-
+//Task E.3.a
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgramType degreeprogram) {
     classRosterArray[lastIndex]->SetStudentId(studentID);
     classRosterArray[lastIndex]->SetStudentFirstName(firstName);
@@ -148,15 +148,52 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
     classRosterArray[lastIndex]->SetDegreeProgram(degreeprogram);
 };
 
+//Task E.3.b
+void Roster::remove(string studentID){
+    cout << endl;
+    cout << "Finding the Student with ID " << studentID << " and deleting it." << endl;
+    bool idFound = false;
+    //cout << lastIndex << " LAST INEX IS " << endl;
+    //cout <<numStudents <<" num student is " << endl;
+    for (int i = 0; i < lastIndex; ++i) {
+        if (classRosterArray[i]->GetStudentId() == studentID) {
+            idFound = true;
+            //deleting the student from the roster;
+            delete this->classRosterArray[i];
+            //Moving last element to this deleted index and decrementing the array size to plug gap
+            this->classRosterArray[i] = this->classRosterArray[lastIndex];
+            lastIndex--;
+        }
+    }
+    if (idFound == false) {
+            cout << "ID " << studentID << " is not found!!!" << endl;
+    }
+};
+
 //Task E.3.c
 void Roster::printAll(){
+    cout << endl;
     for (int i = 0; i <= this->lastIndex; ++i) {
         this->classRosterArray[i]->PrintStudentData();
     }
 }
 
+//Task E.3.d
+void Roster::printAverageDaysInCourse(){
+    cout << "Printing Average Days in Course" << endl;
+    for (int i = 0; i < numStudents; ++i) {
+        int averageDays = 0;
+        //creating a pointer that points towards current object's courseDays array
+        int* mypointer = classRosterArray[i]->GetCourseDays();
+        averageDays = (mypointer[0] + mypointer[1] + mypointer[2]) / 3;
+        cout << "Student with ID " << classRosterArray[i]->GetStudentId() << " requires  "<<averageDays <<" days."<< endl;
+    }
+}
+
 //Task E.3.e
 void Roster::printInvalidEmails(){
+    cout << endl;
+    cout << "Printing Invalid Email Addresses" << endl;
     //Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').
     
     for (int i = 0; i < numStudents; ++i) {
@@ -200,16 +237,6 @@ void Roster::printInvalidEmails(){
     cout << endl;
 }
 
-//Task E.3.d
-void Roster::printAverageDaysInCourse(){
-    for (int i = 0; i < numStudents; ++i) {
-        int averageDays = 0;
-        //creating a pointer that points towards current object's courseDays array
-        int* mypointer = classRosterArray[i]->GetCourseDays();
-        averageDays = (mypointer[0] + mypointer[1] + mypointer[2]) / 3;
-        cout << "Student with ID " << classRosterArray[i]->GetStudentId() << " requires  "<<averageDays <<" days."<< endl;
-    }
-}
 
 //Task E.3.f
 void Roster::printByDegreeProgram(DegreeProgramType degreeProgram){
@@ -232,7 +259,6 @@ void Roster::printByDegreeProgram(DegreeProgramType degreeProgram){
         if (degreeProgram == classRosterArray[i]->GetDegreeProgram()){
             classRosterArray[i]->PrintStudentData();
         }
-        
     }
 };
 

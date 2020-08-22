@@ -46,7 +46,7 @@ public:
     //Task E.3.f
     void printByDegreeProgram(DegreeProgramType degreeProgram);
     
-    
+
     //Destructor
     //~Roster();
     

@@ -57,16 +57,19 @@ int main() {
     classRoster->printAll();
     */
     
-    Roster* classRoster = new Roster(numStudents);
+    Roster* classRoster;
+    classRoster = new Roster(numStudents);
     for (int i = 0; i < numStudents; ++i) {
         classRoster->rosterPopulate(studentData[i]);
     }
     classRoster->printAll();
     classRoster->printInvalidEmails();
     classRoster->printAverageDaysInCourse();
-    classRoster->printByDegreeProgram(SECURITY);
-    
-    
+    classRoster->printByDegreeProgram(SOFTWARE);
+    (*classRoster).remove("A3");
+    classRoster->printAll();
+    classRoster->remove("A3");
+
     return 0;
 }
 
