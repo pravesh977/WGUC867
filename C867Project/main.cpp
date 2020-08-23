@@ -24,7 +24,7 @@ int main() {
 
     
   /*
-    //CALLING Empty and FULL CONSTRUCTOR FOR PRACTICE
+    //CALLING Empty and FULL CONSTRUCTOR
     //Delete later
     int myaray[3] = {55,88,66};
     Student boi1;
@@ -46,7 +46,7 @@ int main() {
     
     classRoster->printAll();
     */
-    
+ 
     Roster* classRoster;
     classRoster = new Roster(numStudents);
     for (int i = 0; i < numStudents; ++i) {
@@ -54,12 +54,17 @@ int main() {
     }
     classRoster->printAll();
     classRoster->printInvalidEmails();
-    classRoster->printAverageDaysInCourse();
+    
+    for (int i = 0; i < numStudents; ++i) {
+        string studentID = classRoster->classRosterArray[i]->GetStudentId();
+        classRoster->printAverageDaysInCourse(studentID);
+    }
+
     classRoster->printByDegreeProgram(SOFTWARE);
     (*classRoster).remove("A3");
     classRoster->printAll();
     classRoster->remove("A3");
-
+   
     return 0;
 }
 

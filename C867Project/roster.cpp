@@ -193,8 +193,21 @@ void Roster::printAll(){
 }
 
 //Task E.3.d
-void Roster::printAverageDaysInCourse(){
-    cout << "Printing Average Days in Course" << endl;
+void Roster::printAverageDaysInCourse(string studentID){
+   // cout << "Printing Average Days in Course" << endl;
+   // cout << studentID << endl;
+    
+    for (int i = 0; i < 5; ++i) {
+        if ( classRosterArray[i]->GetStudentId() == studentID) {
+            int averageDays = 0;
+            int* mypointer = classRosterArray[i]->GetCourseDays();
+            averageDays = (mypointer[0] + mypointer[1] + mypointer[2]) / 3;
+            cout << "Student with ID " << classRosterArray[i]->GetStudentId() << " requires  "<<averageDays <<" days."<< endl;
+            }
+        }
+    
+    
+    /* not correct, need to use the string parameter with id. this just gets average of everyone.
     for (int i = 0; i < numStudents; ++i) {
         int averageDays = 0;
         //creating a pointer that points towards current object's courseDays array
@@ -202,6 +215,7 @@ void Roster::printAverageDaysInCourse(){
         averageDays = (mypointer[0] + mypointer[1] + mypointer[2]) / 3;
         cout << "Student with ID " << classRosterArray[i]->GetStudentId() << " requires  "<<averageDays <<" days."<< endl;
     }
+     */
 }
 
 //Task E.3.e
@@ -288,7 +302,10 @@ void Roster::printByDegreeProgram(DegreeProgramType degreeProgram){
     }
 };
 
-//Destructor FIXME
-//Roster::~Roster(){
-    
-//};
+//Task 5 Destructor
+Roster::~Roster(){
+    for (int i = 0; i < numStudents; ++i) {
+        delete this->classRosterArray[i];
+    }
+    delete this;
+};

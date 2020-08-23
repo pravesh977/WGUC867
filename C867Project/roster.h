@@ -38,7 +38,7 @@ public:
     void printAll();
     
     //Task E.3.d
-    void printAverageDaysInCourse();
+    void printAverageDaysInCourse(string studentID);
     
     //Task E.3.e
     void printInvalidEmails();
@@ -46,18 +46,20 @@ public:
     //Task E.3.f
     void printByDegreeProgram(DegreeProgramType degreeProgram);
     
+    int lastIndex; //index of last student in the roster
+    int capacity; //maximum size of the roster
+    Student** classRosterArray;//classRosterArray is a pointer to
+       //int *courseDays;
 
     //Destructor
-    //~Roster();
+    ~Roster();
     
 private:
     
-    int lastIndex; //index of last student in the roster
-    int capacity; //maximum size of the roster
+
     
     //E.1 Create an array of pointers, classRosterArray, to hold the data provided in the “studentData Table.”
-    Student** classRosterArray;//classRosterArray is a pointer to
-    //int *courseDays;
+   
 };
 
 #endif /* roster_h */

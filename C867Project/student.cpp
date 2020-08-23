@@ -73,13 +73,6 @@ Student::Student(string Id, string fName, string lName, string emailId, int age,
     this->degreeProgram = degProg;
 };
 
-//Task F5 Destructor FIXME understand destructor Where to place it? how does it get called?
-Student::~Student() {
-    if (courseDays != nullptr) {
-        delete [] courseDays;
-        courseDays = nullptr;
-    }
-};
     //Task D.2.a Creating Accessors/Getters for each instance variable
     string Student::GetStudentId () const{
         return studentId;
@@ -129,3 +122,10 @@ Student::~Student() {
         cout << endl;
     };
     
+//Task F5 Destructor
+Student::~Student() {
+    if (courseDays != nullptr) {
+        delete [] courseDays;
+        courseDays = nullptr;
+    }
+};
